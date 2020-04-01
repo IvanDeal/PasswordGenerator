@@ -12,7 +12,8 @@ namespace PasswordGenerator
 {
     public partial class Form1 : Form
     {
-        string possibleCharacters = "acbdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()-_+=[];,./{}:<>?|";
+        string possibleCharactersWithSymbols = "acbdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()-_+=[];,./{}:<>?|";
+        string possibleCharactersNoSymbols = "acbdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
         char selectedCharacter;
 
         StringBuilder eightCharacterPassword = new StringBuilder ("", 8);
@@ -31,7 +32,7 @@ namespace PasswordGenerator
 
             for (int i = 0; i < 8; i++)
             {
-                selectedCharacter = (possibleCharacters[rnd.Next(0, possibleCharacters.Length)]);
+                selectedCharacter = (possibleCharactersWithSymbols[rnd.Next(0, possibleCharactersWithSymbols.Length)]);
                 eightCharacterPassword.Append(selectedCharacter);
             }
 
@@ -51,7 +52,35 @@ namespace PasswordGenerator
 
             for (int i = 0; i < 16; i++)
             {
-                selectedCharacter = (possibleCharacters[rnd.Next(0, possibleCharacters.Length)]);
+                selectedCharacter = (possibleCharactersWithSymbols[rnd.Next(0, possibleCharactersWithSymbols.Length)]);
+                eightCharacterPassword.Append(selectedCharacter);
+            }
+
+            passwordBox.Text = eightCharacterPassword.ToString();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            passwordBox.Text = String.Empty;
+            eightCharacterPassword.Clear();
+
+            for (int i = 0; i < 8; i++)
+            {
+                selectedCharacter = (possibleCharactersNoSymbols[rnd.Next(0, possibleCharactersNoSymbols.Length)]);
+                eightCharacterPassword.Append(selectedCharacter);
+            }
+
+            passwordBox.Text = eightCharacterPassword.ToString();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            passwordBox.Text = String.Empty;
+            eightCharacterPassword.Clear();
+
+            for (int i = 0; i < 16; i++)
+            {
+                selectedCharacter = (possibleCharactersNoSymbols[rnd.Next(0, possibleCharactersNoSymbols.Length)]);
                 eightCharacterPassword.Append(selectedCharacter);
             }
 
